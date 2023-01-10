@@ -4,7 +4,7 @@ RUN pip install pipenv
 
 WORKDIR /
 
-ADD Pipfile Pipfile.lock main.py /
+ADD Pipfile Pipfile.lock main.py okteto-stack.yaml /
 
 RUN pipenv install --system --deploy
 
