@@ -7,6 +7,7 @@ name = "pypi"
 fastapi = "*"
 requests = "*"
 bs4 = "*"
+uvicorn = "*"
 
 [dev-packages]
 pylint = "*"
