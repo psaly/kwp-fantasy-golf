@@ -18,13 +18,23 @@ kwp_teams = {
     'Corby': ['Jon Rahm', 'Patrick Cantlay', 'Matt Fitzpatrick', 'Cameron Young', 'Corey Conners', 'Russell Henley', 'Sepp Straka'],
 }
 
+# ESPN_URL = "https://www.espn.com/golf/leaderboard"
+ESPN_URL = 'https://www.espn.com/golf/leaderboard/_/tournamentId/401465512'
+
 
 def main():
     """
     For running manually
     """
-    all_players = scrape_live_leaderboard(
-        'https://www.espn.com/golf/leaderboard/_/tournamentId/401465512')
+    scores = team_scores()
+    print(scores)
+
+
+def team_scores():
+    """
+    Compile team scores
+    """
+    all_players = scrape_live_leaderboard(ESPN_URL)
 
     team_scores = []
 
@@ -64,10 +74,10 @@ def main():
 
     team_scores.sort(key=lambda x: x['team_score'])
 
-    print(team_scores)
+    return team_scores
 
 
-def scrape_live_leaderboard(url="https://www.espn.com/golf/leaderboard") -> list:
+def scrape_live_leaderboard(url) -> list:
     """
     Scrape ESPN leaderboard and return list containing all player scores:
     [keys: "tournament_name", "player_name", "position", "score_to_par": "thru"}, ...]

@@ -22,5 +22,4 @@ def live_scores():
     """
     Live scoring
     """
-    return LiveScoring.scrape_live_leaderboard(
-        'https://www.espn.com/golf/leaderboard/_/tournamentId/401465512')
+    return LiveScoring.team_scores()
