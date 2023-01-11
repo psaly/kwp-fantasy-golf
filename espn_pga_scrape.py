@@ -8,14 +8,67 @@ KWP_CUT_PENALTY = 2
 # Bonuses for 1-2-3-4-5 place finishes
 KWP_BONUSES = [10, 5, 3, 2, 1]
 
+kwp_teams = {
+    'Saly': ['Tony Finau', 'Viktor Hovland', 'Tom Kim', 'Max Homa', 'Aaron Wise', 'Sahith Theegala', 'Keegan Bradley'],
+    'Harv': ['Jordan Spieth', 'Seamus Power', 'J.J. Spaun', 'Brian Harman', 'Sungjae Im', 'Scottie Scheffler', 'Xander Schauffele'],
+    "O'Leary": ['Justin Thomas', 'Sam Burns', 'Hideki Matsuyama', 'Collin Morikawa', 'Will Zalatoris', 'Billy Horschel', 'Adam Scott'],
+    'Corby': ['Jon Rahm', 'Patrick Cantlay', 'Matt Fitzpatrick', 'Cameron Young', 'Corey Conners', 'Russell Henley', 'Sepp Straka'],
+}
+
+kwp_roster_order = ['Saly', 'Harv', "O'Leary", 'Corby']
+
+KWP_CUT_PENALTY = 2
+
+COUNTING_SCORES = 4
+
 
 def main():
     """
     Main
     """
-    players = scrape_live_leaderboard(
+
+    all_players = scrape_live_leaderboard(
         'https://www.espn.com/golf/leaderboard/_/tournamentId/401465512')
-    print(players)
+
+    team_scores = []
+
+    for manager, players in kwp_teams.items():
+        player_scores = []
+        for p in players:
+
+            try:
+                player_data = all_players[p]
+                player_scores.append({
+                    'player_name': p,
+                    'kwp_score_to_par': player_data['kwp_score_to_par'],
+                    'thru': player_data['thru'],
+                    'kwp_bonus': player_data['kwp_bonus']
+                })
+            except KeyError:
+                player_scores.append({
+                    'player_name': p,
+                    'kwp_score_to_par': 100,
+                    'thru': 'not entered',
+                    'kwp_bonus': 0
+                })
+
+        player_scores.sort(key=lambda x: x['kwp_score_to_par'])
+
+        # if bonus
+        team_score = sum(x['kwp_score_to_par'] - x['kwp_bonus']
+                         for x in player_scores[:COUNTING_SCORES])
+        # team_score = sum(x['kwp_score_to_par']
+        #                  for x in player_scores[:COUNTING_SCORES])
+
+        team_scores.append({
+            'manager_name': manager,
+            'team_score': team_score,
+            'player_scores': player_scores
+        })
+
+    team_scores.sort(key=lambda x: x['team_score'])
+
+    print(team_scores)
 
 
 def scrape_live_leaderboard(url="https://www.espn.com/golf/leaderboard") -> list:
@@ -38,7 +91,7 @@ def scrape_live_leaderboard(url="https://www.espn.com/golf/leaderboard") -> list
     ).text and 'Round' not in status.findChild().text
 
     # for storing parsed player data
-    all_players = []
+    player_scores = {}
 
     worst_score = -1000  # placeholder
 
@@ -85,7 +138,8 @@ def scrape_live_leaderboard(url="https://www.espn.com/golf/leaderboard") -> list
                     # add to players list
                     # score could be None still if we need to fill in with worst score
                     # Maybe create an object here?
-                    all_players.append({
+
+                    player_scores[player] = {
                         "tournament_name": tourney_name,
                         "player_name": player,
                         "position": pos,
@@ -93,7 +147,8 @@ def scrape_live_leaderboard(url="https://www.espn.com/golf/leaderboard") -> list
                         "kwp_bonus": kwp_bonus,
                         "today": today,
                         "thru": thru
-                    })
+                    }
+
         except KeyError:
             print(f"**WEIRD ERROR** {td}")
         except IndexError:
@@ -102,11 +157,11 @@ def scrape_live_leaderboard(url="https://www.espn.com/golf/leaderboard") -> list
     print(f"Tourney: {tourney_name}")
 
     # update all players who MC/WD/DQ score to the cut placeholder
-    for player in all_players:
-        if player["kwp_score_to_par"] is None:
-            player["kwp_score_to_par"] = worst_score + KWP_CUT_PENALTY
+    for player, data in player_scores.items():
+        if data["kwp_score_to_par"] is None:
+            data["kwp_score_to_par"] = worst_score + KWP_CUT_PENALTY
 
-    return all_players
+    return player_scores
 
 
 if __name__ == "__main__":
