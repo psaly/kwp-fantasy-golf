@@ -1,7 +1,13 @@
+'''
+For interacting with Slack
+'''
 from enum import Enum
 
 
 class SlackChannel(Enum):
+    '''
+    Slack Object
+    '''
     PFGL = (None, None)
     KWP = ('b9dpA3duAR2GWr9mHOClpgQL', 'TRSTAS2GJ')
 
@@ -11,16 +17,18 @@ class SlackChannel(Enum):
 
 
 def valid_request(slack_form, channel: SlackChannel):
+    '''
+    Whether incoming request is valid
+    '''
     return slack_form['token'] == channel.token and slack_form['team_id'] == channel.team_id
 
 
-def build_slack_response(
-        team_scoring: list[dict],
-        tourney_name: str,
-        in_channel=True,
-        show_player_scores=True,
-        bonus=False
-) -> dict:
+def build_slack_response(team_scoring: list[dict], tourney_name: str,
+                         in_channel=True, show_player_scores=True, bonus=False
+                         ) -> dict:
+    """
+    Build json for Slack response
+    """
     scores_string = ''
     breakdown_string = ''
 
@@ -83,81 +91,12 @@ def build_slack_response(
     return slack_res
 
 
-def build_field_response(
-        field: list[dict],
-        tourney_name: str,
-        in_channel=True
-) -> dict:
-    summary_string = ''
-    team_strings = ['', '', '', '']
-
-    print(field)
-
-    for i, t in enumerate(field):
-        summary_string += f'*{t["manager_name"]}*: `{t["count"]}`\n'
-        team_strings[i] += f'*{t["manager_name"]}*\n'
-
-        for p in t["players"]:
-            team_strings[i] += f'>{p["name"]}: '
-            if p["playing"]:
-                team_strings[i] += ":white_check_mark:"
-            else:
-                team_strings[i] += ":x:"
-            team_strings[i] += '\n'
-
-    slack_res = {
-        "blocks": [
-            {
-                "type": "header",
-                "text": {
-                    "type": "plain_text",
-                    "text": f"{tourney_name} Field"
-                }
-            },
-            {
-                "type": "divider"
-            },
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": summary_string
-                }
-            },
-            {
-                "type": "divider"
-            }
-        ]
-    }
-
-    for ts in team_strings:
-        slack_res["blocks"].extend([
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": ts
-                }
-            },
-            {
-                "type": "divider"
-            }
-        ])
-
-    if in_channel:
-        slack_res["response_type"] = "in_channel"
-
-    print(slack_res)
-
-    return slack_res
-
-
 def _display_score_to_par(score: int) -> str:
     """
     Convert 0 to E and add '+' for over par scores
     """
     if score > 0:
         return '+' + str(score)
-    elif score == 0:
+    if score == 0:
         return 'E'
     return str(score)

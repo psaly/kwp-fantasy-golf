@@ -26,15 +26,16 @@ def main():
     """
     For running manually
     """
-    scores = team_scores()
+    tourney, scores = get_team_scores()
+    print(tourney)
     print(scores)
 
 
-def team_scores():
+def get_team_scores(bonus=True):
     """
     Compile team scores
     """
-    all_players = scrape_live_leaderboard(ESPN_URL)
+    tourney, all_players = scrape_live_leaderboard(ESPN_URL)
 
     team_scores = []
 
@@ -60,11 +61,12 @@ def team_scores():
 
         player_scores.sort(key=lambda x: x['kwp_score_to_par'])
 
-        # if bonus
-        team_score = sum(x['kwp_score_to_par'] - x['kwp_bonus']
-                         for x in player_scores[:COUNTING_SCORES])
-        # team_score = sum(x['kwp_score_to_par']
-        #                  for x in player_scores[:COUNTING_SCORES])
+        if bonus:
+            team_score = sum(x['kwp_score_to_par'] - x['kwp_bonus']
+                             for x in player_scores[:COUNTING_SCORES])
+        else:
+            team_score = sum(x['kwp_score_to_par']
+                             for x in player_scores[:COUNTING_SCORES])
 
         team_scores.append({
             'manager_name': manager,
@@ -74,16 +76,17 @@ def team_scores():
 
     team_scores.sort(key=lambda x: x['team_score'])
 
-    return team_scores
+    return tourney, team_scores
 
 
-def scrape_live_leaderboard(url) -> list:
+def scrape_live_leaderboard(url):
     """
     Scrape ESPN leaderboard and return list containing all player scores:
     [keys: "tournament_name", "player_name", "position", "score_to_par": "thru"}, ...]
+    return tourney, player_scores
     """
     # make request and check status
-    r = requests.get(url)
+    r = requests.get(url, timeout=5)
     r.raise_for_status()
 
     soup = BeautifulSoup(r.content, 'html.parser')
@@ -160,14 +163,14 @@ def scrape_live_leaderboard(url) -> list:
         except IndexError:
             print(f"**INDEX ERROR--tournament is probably not live** {td}")
 
-    print(f"Tourney: {tourney_name}")
+    # print(f"Tourney: {tourney_name}")
 
     # update all players who MC/WD/DQ score to the cut placeholder
     for player, data in player_scores.items():
         if data["kwp_score_to_par"] is None:
             data["kwp_score_to_par"] = worst_score + KWP_CUT_PENALTY
 
-    return player_scores
+    return tourney_name, player_scores
 
 
 if __name__ == "__main__":
