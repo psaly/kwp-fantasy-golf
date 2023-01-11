@@ -18,7 +18,7 @@ def live_scores():
     return scores
 
 
-@app.post('/api/v1/kwp/scores')
+@app.post('/api/v1/slack/scores')
 async def slack_scores(req: Request):
     """
     Endpoint for slack /scores.
