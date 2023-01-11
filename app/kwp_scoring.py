@@ -1,10 +1,13 @@
-__author__ = 'piercesaly'
-
+'''
+Scoring code
+'''
 import requests
 from bs4 import BeautifulSoup
 
+# Penalty for missed cut (worst score of anyone who made the cut + penalty)
 KWP_CUT_PENALTY = 2
-
+# Number of player scores counting toward team score
+COUNTING_SCORES = 4
 # Bonuses for 1-2-3-4-5 place finishes
 KWP_BONUSES = [10, 5, 3, 2, 1]
 
@@ -15,18 +18,11 @@ kwp_teams = {
     'Corby': ['Jon Rahm', 'Patrick Cantlay', 'Matt Fitzpatrick', 'Cameron Young', 'Corey Conners', 'Russell Henley', 'Sepp Straka'],
 }
 
-kwp_roster_order = ['Saly', 'Harv', "O'Leary", 'Corby']
-
-KWP_CUT_PENALTY = 2
-
-COUNTING_SCORES = 4
-
 
 def main():
     """
-    Main
+    For running manually
     """
-
     all_players = scrape_live_leaderboard(
         'https://www.espn.com/golf/leaderboard/_/tournamentId/401465512')
 
