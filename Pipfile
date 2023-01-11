@@ -8,6 +8,7 @@ fastapi = "*"
 requests = "*"
 bs4 = "*"
 uvicorn = "*"
+python-multipart = "*"
 
 [dev-packages]
 pylint = "*"
