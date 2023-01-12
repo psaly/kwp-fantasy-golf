@@ -102,7 +102,7 @@ def scrape_live_leaderboard(url):
     # for storing parsed player data
     player_scores = {}
 
-    worst_score = -1000  # placeholder
+    worst_score = 998  # placeholder
 
     pos_offset = 1  # will be changed to 2 if we see there are movement arrows in the table
     # loop through all tds
