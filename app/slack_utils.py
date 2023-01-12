@@ -88,6 +88,8 @@ def build_slack_response(team_scoring: list[dict], tourney_name: str,
     if in_channel:
         slack_res["response_type"] = "in_channel"
 
+    print(slack_res)
+
     return slack_res
 
 
