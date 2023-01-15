@@ -28,6 +28,8 @@ async def slack_scores(req: Request):
     if not Slack.valid_request(form, Slack.SlackChannel.KWP):
         raise HTTPException(status_code=400, detail="Invalid token.")
 
+    print(form)
+
     response_in_channel = "-h" not in form["text"]
     include_bonus = "-b" in form["text"]
 
