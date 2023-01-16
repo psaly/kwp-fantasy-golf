@@ -24,7 +24,9 @@ def _slack_response(req_form):
         bonus=include_bonus
     )
 
-    requests.post(req_form['response_url'], data=slack_response, timeout=5)
+    print(req_form['response_url'])
+
+    requests.post(req_form['response_url'], json=slack_response, timeout=5)
 
     requests.get('https://fastapi-psaly.cloud.okteto.net/', timeout=10)
 
