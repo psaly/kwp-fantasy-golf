@@ -24,9 +24,9 @@ def _slack_response(req_form):
         bonus=include_bonus
     )
 
-    print(slack_response)
-
     requests.post(req_form['response_url'], data=slack_response, timeout=5)
+
+    requests.get('https://fastapi-psaly.cloud.okteto.net/', timeout=10)
 
 
 @app.get("/")
@@ -52,4 +52,4 @@ async def slack_scores(req: Request, bgtasks: BackgroundTasks):
 
     bgtasks.add_task(_slack_response, form)
 
-    return
+    return {"response_type": "in_channel"}
