@@ -12,10 +12,10 @@ COUNTING_SCORES = 4
 KWP_BONUSES = [10, 5, 3, 2, 1]
 
 kwp_teams = {
-    'Saly': ['Tom Kim', 'K.H. Lee', 'Keegan Bradley', 'Maverick McNealy', 'Christiaan Bezuidenhout', 'Mackenzie Hughes', 'Emiliano Grillo'],
-    'Harv': ['Jordan Spieth', 'Brian Harman', 'Sungjae Im', 'Taylor Montgomery', 'J.J. Spaun', 'Harris English', 'Brendan Steele'],
-    "O'Leary": ['Hideki Matsuyama', 'Webb Simpson', 'Keith Mitchell', 'Chris Kirk', 'Si Woo Kim', 'Billy Horschel', 'Adam Scott'],
-    'Corby': ['Corey Conners', 'Russell Henley', 'Tom Hoge', 'Cam Davis', 'Aaron Rai', 'J.T. Poston', 'Matt Kuchar']
+    'Saly': ['Tom Kim', 'K.H. Lee', 'Tony Finau', 'Jason Day', 'Aaron Wise', 'Sahith Theegala', 'Denny McCarthy'],
+    'Harv': ['Scottie Scheffler', 'Xander Schauffele', 'Taylor Montgomery', 'Sungjae Im', 'Brian Harman', 'Andrew Putnam', 'Harris English'],
+    "O'Leary": ['Will Zalatoris', 'Sam Burns', 'Si Woo Kim', 'Thomas Detry', 'Davis Riley', 'Rickie Fowler', 'Chris Kirk'],
+    'Corby': ['Jon Rahm', 'Patrick Cantlay', 'Cameron Young', 'Tom Hoge', 'Cam Davis', 'J.T. Poston', 'Adam Hadwin']
 }
 
 ESPN_URL = "https://www.espn.com/golf/leaderboard"
@@ -161,9 +161,25 @@ def scrape_live_leaderboard(url):
         except KeyError:
             print(f"**WEIRD ERROR** {td}")
         except IndexError:
+            # If tournament hasn't started yet get tee times instead
             print(f"**INDEX ERROR--tournament is probably not live** {td}")
-
-    # print(f"Tourney: {tourney_name}")
+            tee_time_offset = 1
+            for i, td in enumerate(tds):
+                for child in td.findChildren():
+                    if child.has_attr('class') and len(child['class']) > 1 and child['class'][1] == 'leaderboard_player_name':
+                        player = child.text
+                        score = 0
+                        thru = tds[i+tee_time_offset].text
+                        bonus = 0
+                        player_scores[player] = {
+                            "tournament_name": tourney_name,
+                            "player_name": player,
+                            "position": None,
+                            "kwp_score_to_par": score,
+                            "kwp_bonus": bonus,
+                            "today": None,
+                            "thru": thru
+                        }
 
     # update all players who MC/WD/DQ score to the cut placeholder
     for player, data in player_scores.items():
