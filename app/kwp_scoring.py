@@ -12,9 +12,9 @@ COUNTING_SCORES = 4
 KWP_BONUSES = [10, 5, 3, 2, 1]
 
 kwp_teams = {
-    'Saly': ['Rory McIlroy', 'Tony Finau', 'Max Homa', 'Viktor Hovland', 'Tom Kim', 'Sahith Theegala', 'Jason Day'],
-    'Harv': ['Scottie Scheffler', 'Xander Schauffele', 'Jordan Spieth', 'Sungjae Im', 'Taylor Montgomery', 'J.J. Spaun', 'Brian Harman'],
-    "O'Leary": ['Collin Morikawa', 'Justin Thomas', 'Hideki Matsuyama', 'Sam Burns', 'Billy Horschel', 'Rickie Fowler', 'Chris Kirk'],
+    'Saly': ['Rory McIlroy', 'Tony Finau', 'Max Homa', 'Viktor Hovland', 'Tom Kim', 'Keegan Bradley', 'Jason Day'],
+    'Harv': ['Scottie Scheffler', 'Xander Schauffele', 'Jordan Spieth', 'Sungjae Im', 'Taylor Montgomery', 'Justin Rose', 'Tyrrell Hatton'],
+    "O'Leary": ['Collin Morikawa', 'Justin Thomas', 'Hideki Matsuyama', 'Sam Burns', 'Billy Horschel', 'Adam Scott', 'Will Zalatoris'],
     'Corby': ['Jon Rahm', 'Patrick Cantlay', 'Cameron Young', 'Matt Fitzpatrick', 'Shane Lowry', 'Tommy Fleetwood', 'Corey Conners']
 }
 
