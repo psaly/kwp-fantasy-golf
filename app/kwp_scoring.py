@@ -12,7 +12,7 @@ COUNTING_SCORES = 4
 KWP_BONUSES = [10, 5, 3, 2, 1]
 
 kwp_teams = {
-    'Saly': ['Denny McCarthy', 'Aaron Wise', 'Robby Shelton', 'Stephen Jaeger', 'Will Gordon', 'Lee Hodges', 'Christiaan Bezuidenhout'],
+    'Saly': ['Denny McCarthy', 'Aaron Wise', 'Robby Shelton', 'Stephan Jaeger', 'Will Gordon', 'Lee Hodges', 'Christiaan Bezuidenhout'],
     'Harv': ['Sungjae Im', 'Taylor Pendrith', 'Harris English', 'David Lingmerth', 'Nick Hardy', 'Danny Willett', 'Rory Sabbatini'],
     "O'Leary": ['Chris Kirk', 'Billy Horschel', 'Davis Riley', 'Webb Simpson', 'Dylan Frittelli', 'Adam Svensson', 'Adam Long'],
     'Corby': ['Shane Lowry', 'Matt Kuchar', 'J.T. Poston', 'Jhonattan Vegas', 'Sepp Straka', 'Garrick Higgo', 'Aaron Rai'],
