@@ -15,7 +15,7 @@ kwp_teams = {
     'Saly': ['Rory McIlroy', 'Tony Finau', 'Max Homa', 'Viktor Hovland', 'Tom Kim', 'Jason Day', 'Keegan Bradley'],
     'Harv': ['Scottie Scheffler', 'Tyrrell Hatton', 'Sungjae Im', 'Xander Schauffele', 'Jordan Spieth', 'Harris English', 'Taylor Montgomery'],
     "O'Leary": ['Collin Morikawa', 'Will Zalatoris', 'Justin Thomas', 'Rickie Fowler', 'Keith Mitchell', 'Chris Kirk', 'Si Woo Kim'],
-    'Corby': ['Jon Rahm', 'Patrick Cantlay', 'Matt Fitzpatrick', 'Cameron Young', 'Shane Lowry', 'Corey Conners', 'Tommy Fleetwood']
+    'Corby': ['Russell Henley', 'Patrick Cantlay', 'Matt Fitzpatrick', 'Cameron Young', 'Shane Lowry', 'Corey Conners', 'Tommy Fleetwood']
 }
 
 ESPN_URL = "https://www.espn.com/golf/leaderboard"
