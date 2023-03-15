@@ -12,14 +12,14 @@ COUNTING_SCORES = 4
 KWP_BONUSES = [10, 5, 3, 2, 1]
 
 kwp_teams = {
-    'Saly': ['Rory McIlroy', 'Tony Finau', 'Max Homa', 'Viktor Hovland', 'Tom Kim', 'Jason Day', 'Keegan Bradley'],
-    'Harv': ['Scottie Scheffler', 'Tyrrell Hatton', 'Sungjae Im', 'Xander Schauffele', 'Jordan Spieth', 'Harris English', 'Taylor Montgomery'],
-    "O'Leary": ['Collin Morikawa', 'Will Zalatoris', 'Justin Thomas', 'Rickie Fowler', 'Keith Mitchell', 'Chris Kirk', 'Si Woo Kim'],
-    'Corby': ['Russell Henley', 'Patrick Cantlay', 'Matt Fitzpatrick', 'Cameron Young', 'Shane Lowry', 'Corey Conners', 'Tommy Fleetwood']
+    'Saly': ['Wyndham Clark', 'Denny McCarthy', 'Justin Suh', 'Gary Woodland', 'Maverick McNealy', 'Nick Taylor', 'Stephen Jaeger'],
+    'Harv': ['Matthew NeSmith', 'David Lingmerth', 'Brian Harman', 'Jordan Spieth', 'Justin Rose', 'Trey Mullinax', 'Luke List'],
+    "O'Leary": ['Justin Thomas', 'Sam Burns', 'Davis Riley', 'Brandon Wu', 'Taylor Moore', 'Joel Dahmen', 'Beau Hossler'],
+    'Corby': ['Matt Fitzpatrick', 'Tommy Fleetwood', 'Adam Hadwin', 'J.T. Poston', 'Jhonattan Vegas', 'Garrick Higgo', 'Kevin Tway']
 }
 
-# ESPN_URL = "https://www.espn.com/golf/leaderboard"
-ESPN_URL = 'https://www.espn.com/golf/leaderboard/_/tournamentId/401465526'
+ESPN_URL = "https://www.espn.com/golf/leaderboard"
+# ESPN_URL = 'https://www.espn.com/golf/leaderboard/_/tournamentId/401465526'
 
 
 def main():
