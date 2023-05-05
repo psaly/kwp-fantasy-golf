@@ -12,10 +12,10 @@ COUNTING_SCORES = 4
 KWP_BONUSES = [10, 5, 3, 2, 1]
 
 kwp_teams = {
-    'Saly': ['Sahith Theegala', 'Tony Finau', 'Wyndham Clark', 'Viktor Hovland', 'Tom Kim', 'Max Homa', 'Keegan Bradley'],
-    'Harv': ['Jordan Spieth', 'Scottie Scheffler', 'Xander Schauffele', 'Taylor Montgomery', 'Justin Rose', 'Sungjae Im', 'Tyrrell Hatton'],
-    "O'Leary": ['Collin Morikawa', 'Justin Thomas', 'Chris Kirk', 'Kurt Kitayama', 'Keith Mitchell', 'Sam Burns', 'Rickie Fowler'],
-    'Corby': ['Jon Rahm', 'Patrick Cantlay', 'Cameron Young', 'Shane Lowry', 'Tommy Fleetwood', 'Corey Conners', 'Matt Fitzpatrick']
+    'Saly': ['Sahith Theegala', 'Tony Finau', 'Rory McIlroy', 'Viktor Hovland', 'Jason Day', 'Max Homa', 'Wyndham Clark'],
+    'Harv': ['Jordan Spieth', 'J.J. Spaun', 'Xander Schauffele', 'Harris English', 'Brian Harman', 'Sungjae Im', 'Tyrrell Hatton'],
+    "O'Leary": ['Collin Morikawa', 'Justin Thomas', 'Adam Scott', 'Kurt Kitayama', 'Keith Mitchell', 'Sam Burns', 'Rickie Fowler'],
+    'Corby': ['Matt Kuchar', 'Patrick Cantlay', 'Cameron Young', 'Shane Lowry', 'Tommy Fleetwood', 'Corey Conners', 'Matt Fitzpatrick']
 }
 
 ESPN_URL = "https://www.espn.com/golf/leaderboard"
