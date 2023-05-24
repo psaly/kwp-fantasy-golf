@@ -18,8 +18,8 @@ kwp_teams = {
     'Corby': ['Jon Rahm', 'Patrick Cantlay', 'Cameron Young', 'Matt Fitzpatrick', 'Shane Lowry', 'Tommy Fleetwood', 'Patrick Reed']
 }
 
-# ESPN_URL = "https://www.espn.com/golf/leaderboard"
-ESPN_URL = 'https://www.espn.com/golf/leaderboard/_/tournamentId/401465523'
+ESPN_URL = 'https://www.espn.com/golf/leaderboard'
+# ESPN_URL = 'https://www.espn.com/golf/leaderboard/_/tournamentId/401465523'
 
 
 def main():
