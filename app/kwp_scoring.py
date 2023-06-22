@@ -13,7 +13,7 @@ KWP_BONUSES = [10, 5, 3, 2, 1]
 
 kwp_teams = {
     'Saly': ['Rory McIlroy', 'Viktor Hovland', 'Tony Finau', 'Max Homa', 'Jason Day', 'Wyndham Clark', 'Tom Kim'],
-    'Harv': ['Scottie Scheffler', 'Xander Schauffele', 'Sungjae Im', 'Brian Harman', 'Harris English', 'Seamus Power', 'Andrew Putnam'],
+    'Harv': ['Scottie Scheffler', 'Xander Schauffele', 'Sungjae Im', 'Brian Harman', 'Harris English', 'Séamus Power', 'Andrew Putnam'],
     "O'Leary": ['Rickie Fowler', 'Si Woo Kim', 'Collin Morikawa', 'Justin Thomas', 'Hideki Matsuyama', 'Adam Scott', 'Austin Eckroat'],
     'Corby': ['Tommy Fleetwood', 'Jon Rahm', 'Cameron Young', 'Matt Fitzpatrick', 'Corey Conners', 'Russell Henley', 'Patrick Cantlay']
 }
