@@ -86,7 +86,8 @@ def scrape_live_leaderboard(url):
     return tourney, player_scores
     """
     # make request and check status
-    r = requests.get(url, timeout=5)
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36'}
+    r = requests.get(url, headers=headers, timeout=5)
     r.raise_for_status()
 
     soup = BeautifulSoup(r.content, 'html.parser')
